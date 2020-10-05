@@ -17,11 +17,10 @@ let count = 0;
 io.on('connection', (socket) => {
     console.log("New Connection");
 
-    socket.emit('countUpdated', count);
+    socket.emit('message', "Wellcome to chat room!!");
 
-    socket.on('increment', () => {
-        count++;
-        io.emit('countUpdated', count);
+    socket.on('send_message', (msg) => {
+        io.emit('message', msg);
 
     });
 
