@@ -12,8 +12,22 @@ const app = express();
 const server = http.createServer(app);
 const io = socket_io(server);
 
+let count = 0;
 
-io.on('connection', () => console.log("New Connection"));
+io.on('connection', (socket) => {
+    console.log("New Connection");
+
+    socket.emit('countUpdated', count);
+
+    socket.on('increment', () => {
+        count++;
+        io.emit('countUpdated', count);
+
+    });
+
+
+
+});
 
 // config 
 app.use(express.static(publicFolder));
