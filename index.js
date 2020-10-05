@@ -26,8 +26,9 @@ io.on('connection', (socket) => {
     });
 
     // on share location 
-    socket.on('shareLocation', (location) => {
+    socket.on('shareLocation', (location, callback) => {
         io.emit('message', ` https://google.com/maps?q=${location.latitude},${location.longitude}`);
+        callback();
     });
 
     socket.on('disconnect', () => {
