@@ -2,7 +2,7 @@
 const path = require('path');
 const express = require('express');
 
-//consts 
+//constants
 const port = process.env.PORT || 3000;
 const publicFolder = path.join(__dirname, './public');
 
