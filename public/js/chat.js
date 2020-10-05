@@ -10,6 +10,6 @@ socket.on('message', (message) => {
 
 document.querySelector("#messageForm").addEventListener('submit', (e) => {
     e.preventDefault();
-    const msg = document.querySelector('input').value;
+    const msg = document.querySelector('#mesg').value;
     socket.emit('send_message', msg);
 });
