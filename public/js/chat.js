@@ -3,11 +3,13 @@ const socket = io();
 const messageForm = document.querySelector("#messageForm");
 const messageInput = messageForm.querySelector('input');
 const shareLocation = document.querySelector('#shareLocation');
-
+const messages = document.querySelector('#messages');
+const message_template = document.querySelector('#template').innerHTML;
 
 socket.on('message', (message) => {
 
-    console.log(message);
+    const html = Mustache.render(message_template, { message });
+    messages.insertAdjacentHTML('beforeend', html);
 });
 
 // message form 

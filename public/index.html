@@ -13,13 +13,24 @@
 
     <h1>Chat Here !!! </h1>
 
+    <!-- The texts  -->
+    <div id="messages"></div>
 
     <form id="messageForm">
         <input type="text" placeholder="Your Message " id="mesg"><br><br>
         <button>Send</button>
     </form>
     <button id="shareLocation">Share Location</button>
+
+    <!-- The templet  -->
+    <script id="template" type="text/html">
+
+        <p>{{message}}</p>
+
+    </script>
+
     <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js" integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg==" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
 </body>
