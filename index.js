@@ -3,7 +3,8 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socket_io = require('socket.io');
-//constants
+const { messageFormat } = require('./utilities/message')
+    //constants
 const port = process.env.PORT || 3000;
 const publicFolder = path.join(__dirname, './public');
 
@@ -17,11 +18,11 @@ let count = 0;
 io.on('connection', (socket) => {
     console.log("New Connection");
 
-    socket.emit('message', "Welcome to chat room!!");
-    socket.broadcast.emit('message', 'A New User has Joined!!');
+    socket.emit('message', messageFormat("Welcome to chat room!!"));
+    socket.broadcast.emit('message', messageFormat('A New User has Joined!!'));
 
     socket.on('send_message', (msg) => {
-        io.emit('message', msg);
+        io.emit('message', messageFormat(msg));
 
     });
 
@@ -32,7 +33,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        io.emit('message', 'A User has Left!!');
+        io.emit('message', messageFormat('A User has Left!!'));
     });
 
 });
