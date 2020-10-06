@@ -4,9 +4,11 @@ const messageForm = document.querySelector("#messageForm");
 const messageInput = messageForm.querySelector('input');
 const shareLocation = document.querySelector('#shareLocation');
 const messages = document.querySelector('#messages');
+
+// templates 
 const message_template = document.querySelector('#template').innerHTML;
 const location_template = document.querySelector('#location_template').innerHTML;
-
+const userList_template = document.querySelector('#userList_template').innerHTML;
 //query string 
 const { username, room_name } = Qs.parse(location.search, { ignoreQueryPrefix: true });
 
@@ -21,6 +23,12 @@ socket.on('location_message', (message) => {
     const html = Mustache.render(location_template, { username: message.username, ref: message.url, createdAt: moment(message.createdAt).format('h:mm a') });
     messages.insertAdjacentHTML('beforeend', html);
 
+});
+
+socket.on('userList', ({ room, users }) => {
+
+    const html = Mustache.render(userList_template, { room, users });
+    document.querySelector('#sidebar').innerHTML = html;
 });
 
 // message form 

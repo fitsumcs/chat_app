@@ -9,13 +9,15 @@
     <link rel="icon" href="/img/icon.png" sizes="96x96" type="image/png">
     <!-- my style  -->
     <link rel="stylesheet" href="/css/styles.min.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
 <body>
 
 
     <div class="chat">
-        <div class="chat__sidebar">
+        <div class="chat__sidebar" id="sidebar">
 
         </div>
         <div class="chat__main">
@@ -35,7 +37,7 @@
 
 
 
-    <!-- The templet  -->
+    <!-- The message templet  -->
     <script id="template" type="text/html">
         <div class="message">
             <p>
@@ -47,7 +49,7 @@
 
 
     </script>
-    <!-- The templet  -->
+    <!-- The location templet  -->
     <script id="location_template" type="text/html">
         <div class="message">
             <p>
@@ -56,6 +58,19 @@
             </p>
             <p><a href="{{ref}}" target="_blank">My Location</a></p>
         </div>
+    </script>
+    <!-- The user list  templet  -->
+    <script id="userList_template" type="text/html">
+        <h1 class="room-title">{{room}}</h1>
+        <br>
+        <ul class="users">
+            {{#users}}
+            <li style="margin-bottom : .5rem"> <span style="font-size: .8em; color: Tomato; margin-right:1rem;margin-bottom : 2rem">
+                <i class="fa fa-circle "></i>
+              </span>{{username}}</li>
+            {{/users}}
+        </ul>
+
     </script>
 
     <!-- scripts -->

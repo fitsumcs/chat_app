@@ -33,6 +33,13 @@ io.on('connection', (socket) => {
         socket.emit('message', messageFormat('App', "Welcome to chat room!!"));
         socket.broadcast.to(user.room_name).emit('message', messageFormat('App', `${user.username} has Joined!!`));
 
+        //render user list 
+        io.to(user.room_name).emit('userList', {
+            room: user.room_name,
+            users: getUsers(user.room_name)
+        });
+
+
         callback();
 
 
@@ -58,6 +65,11 @@ io.on('connection', (socket) => {
         const user = removeUser(socket.id);
         if (user) {
             io.to(user.room_name).emit('message', messageFormat('App', `${user.username} has Left!!`));
+            //render user list 
+            io.to(user.room_name).emit('userList', {
+                room: user.room_name,
+                users: getUsers(user.room_name)
+            });
         }
 
     });
