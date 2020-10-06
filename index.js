@@ -3,8 +3,8 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socket_io = require('socket.io');
-const { messageFormat, location_messageFormat } = require('./utilities/message')
-    //constants
+const { messageFormat, location_messageFormat } = require('./utilities/message');
+//constants
 const port = process.env.PORT || 3000;
 const publicFolder = path.join(__dirname, './public');
 

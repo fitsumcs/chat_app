@@ -1,7 +1,7 @@
 const users = [];
 
 
-function addUser(id, username, room_name) {
+function addUser({ id, username, room_name }) {
 
     // format 
     username = username.trim().toLowerCase();
@@ -27,11 +27,12 @@ function addUser(id, username, room_name) {
     }
 
     // add user 
-    const user = users.push({
+    const user = {
         id,
         username,
         room_name
-    });
+    };
+    users.push(user);
 
     return user;
 
@@ -47,4 +48,17 @@ function removeUser(id) {
         return users.splice(index, 1)[0];
     }
 
+}
+
+
+// get user
+
+function getUser(id) {
+    return users.find(user => user.id === id);
+}
+
+// get users in a specific room 
+function getUsers(room_name) {
+    room_name = room_name.trim().toLowerCase();
+    return users.filter(user => user.room_name = room_name);
 }
