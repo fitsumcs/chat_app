@@ -8,7 +8,7 @@ const message_template = document.querySelector('#template').innerHTML;
 const location_template = document.querySelector('#location_template').innerHTML;
 socket.on('message', (message) => {
 
-    const html = Mustache.render(message_template, { message: message.text, createdAt: message.createdAt });
+    const html = Mustache.render(message_template, { message: message.text, createdAt: moment(message.createdAt).format('h:mm a') });
     messages.insertAdjacentHTML('beforeend', html);
 });
 socket.on('location_message', (ref) => {
