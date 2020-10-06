@@ -30,8 +30,8 @@ io.on('connection', (socket) => {
         }
         socket.join(user.room_name);
         //on specific room
-        socket.emit('message', messageFormat("Welcome to chat room!!"));
-        socket.broadcast.to(user.room_name).emit('message', messageFormat(`${user.username} has Joined!!`));
+        socket.emit('message', messageFormat('App', "Welcome to chat room!!"));
+        socket.broadcast.to(user.room_name).emit('message', messageFormat('App', `${user.username} has Joined!!`));
 
         callback();
 
@@ -57,7 +57,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
         if (user) {
-            io.to(user.room_name).emit('message', messageFormat(`${user.username} has Left!!`));
+            io.to(user.room_name).emit('message', messageFormat('App', `${user.username} has Left!!`));
         }
 
     });
