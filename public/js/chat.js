@@ -5,11 +5,17 @@ const messageInput = messageForm.querySelector('input');
 const shareLocation = document.querySelector('#shareLocation');
 const messages = document.querySelector('#messages');
 const message_template = document.querySelector('#template').innerHTML;
-
+const location_template = document.querySelector('#location_template').innerHTML;
 socket.on('message', (message) => {
 
     const html = Mustache.render(message_template, { message });
     messages.insertAdjacentHTML('beforeend', html);
+});
+socket.on('location_message', (ref) => {
+
+    const html = Mustache.render(location_template, { ref });
+    messages.insertAdjacentHTML('beforeend', html);
+
 });
 
 // message form 
@@ -34,7 +40,9 @@ shareLocation.addEventListener('click', () => {
             longitude: position.coords.longitude,
             latitude: position.coords.latitude
         }, () => {
-            console.log('Location Shared!!');
+            //console.log('Location Shared!!');
+            const html = Mustache.render(message_template, { message: "Location Shared!!" });
+            messages.insertAdjacentHTML('beforeend', html);
             shareLocation.removeAttribute('disabled');
         });
 
