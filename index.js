@@ -18,8 +18,16 @@ let count = 0;
 io.on('connection', (socket) => {
     console.log("New Connection");
 
-    socket.emit('message', messageFormat("Welcome to chat room!!"));
-    socket.broadcast.emit('message', messageFormat('A New User has Joined!!'));
+
+
+    //user info 
+    socket.on('join', ({ username, room_name }) => {
+        socket.join(room_name);
+        //on specific room
+        socket.emit('message', messageFormat("Welcome to chat room!!"));
+        socket.broadcast.to(room_name).emit('message', messageFormat(`${username} has Joined!!`));
+    });
+
 
     socket.on('send_message', (msg) => {
         io.emit('message', messageFormat(msg));

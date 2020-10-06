@@ -6,6 +6,11 @@ const shareLocation = document.querySelector('#shareLocation');
 const messages = document.querySelector('#messages');
 const message_template = document.querySelector('#template').innerHTML;
 const location_template = document.querySelector('#location_template').innerHTML;
+
+//query string 
+const { username, room_name } = Qs.parse(location.search, { ignoreQueryPrefix: true });
+
+
 socket.on('message', (message) => {
 
     const html = Mustache.render(message_template, { message: message.text, createdAt: moment(message.createdAt).format('h:mm a') });
@@ -45,5 +50,7 @@ shareLocation.addEventListener('click', () => {
         });
 
     });
-
 });
+
+// add user info 
+socket.emit('join', { username, room_name });
