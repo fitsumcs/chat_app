@@ -7,32 +7,55 @@
     <title>Chat Room App</title>
     <!-- google tv favicon -->
     <link rel="icon" href="/img/icon.png" sizes="96x96" type="image/png">
+    <!-- my style  -->
+    <link rel="stylesheet" href="/css/styles.min.css">
 </head>
 
 <body>
 
-    <h1>Chat Here !!! </h1>
 
-    <!-- The texts  -->
-    <div id="messages"></div>
+    <div class="chat">
+        <div class="chat__sidebar">
 
-    <form id="messageForm">
-        <input type="text" placeholder="Your Message " id="mesg"><br><br>
-        <button>Send</button>
-    </form>
-    <button id="shareLocation">Share Location</button>
+        </div>
+        <div class="chat__main">
+            <!-- The texts  -->
+            <div id="messages" class="chat__messages"></div>
+            <div class="compose">
+                <form id="messageForm">
+                    <input type="text" placeholder="Your Message " id="mesg"><br><br>
+                    <button>Send</button>
+                </form>
+                <button id="shareLocation">Share Location</button>
+            </div>
+
+        </div>
+
+    </div>
+
+
 
     <!-- The templet  -->
     <script id="template" type="text/html">
+        <div class="message">
+            <p>
+                <span class="message__name">User Name</span>
+                <span class="message__meta">{{createdAt}}</span>
+            </p>
+            <p> {{message}}</p>
+        </div>
 
-        <p>{{createdAt}} - {{message}}</p>
 
     </script>
     <!-- The templet  -->
     <script id="location_template" type="text/html">
-
-        <p>{{createdAt}} - <a href="{{ref}}" target="_blank">My Location</a></p>
-
+        <div class="message">
+            <p>
+                <span class="message__name">User Name</span>
+                <span class="message__meta">{{createdAt}}</span>
+            </p>
+            <p><a href="{{ref}}" target="_blank">My Location</a></p>
+        </div>
     </script>
 
     <!-- scripts -->
