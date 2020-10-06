@@ -1,4 +1,8 @@
 const socket = io();
+//DOM 
+const messageForm = document.querySelector("#messageForm");
+const messageInput = messageForm.querySelector('input');
+const shareLocation = document.querySelector('#shareLocation');
 
 
 socket.on('message', (message) => {
@@ -8,18 +12,20 @@ socket.on('message', (message) => {
 
 // message form 
 
-document.querySelector("#messageForm").addEventListener('submit', (e) => {
+messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const msg = document.querySelector('#mesg').value;
     socket.emit('send_message', msg);
+    messageInput.value = '';
+    messageInput.focus();
 });
 
 // share location 
-document.querySelector('#shareLocation').addEventListener('click', () => {
+shareLocation.addEventListener('click', () => {
     if (!navigator.geolocation) {
         return alert('Geolocation not supported by your browser');
     }
-
+    shareLocation.setAttribute('disabled', 'disabled');
     navigator.geolocation.getCurrentPosition((position) => {
 
         socket.emit('shareLocation', {
@@ -27,6 +33,7 @@ document.querySelector('#shareLocation').addEventListener('click', () => {
             latitude: position.coords.latitude
         }, () => {
             console.log('Location Shared!!');
+            shareLocation.removeAttribute('disabled');
         });
 
     });

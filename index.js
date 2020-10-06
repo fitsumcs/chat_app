@@ -17,7 +17,7 @@ let count = 0;
 io.on('connection', (socket) => {
     console.log("New Connection");
 
-    socket.emit('message', "Wellcome to chat room!!");
+    socket.emit('message', "Welcome to chat room!!");
     socket.broadcast.emit('message', 'A New User has Joined!!');
 
     socket.on('send_message', (msg) => {
