@@ -3,7 +3,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socket_io = require('socket.io');
-const { messageFormat } = require('./utilities/message')
+const { messageFormat, location_messageFormat } = require('./utilities/message')
     //constants
 const port = process.env.PORT || 3000;
 const publicFolder = path.join(__dirname, './public');
@@ -28,7 +28,7 @@ io.on('connection', (socket) => {
 
     // on share location 
     socket.on('shareLocation', (location, callback) => {
-        io.emit('location_message', ` https://google.com/maps?q=${location.latitude},${location.longitude}`);
+        io.emit('location_message', location_messageFormat(` https://google.com/maps?q=${location.latitude},${location.longitude}`));
         callback();
     });
 

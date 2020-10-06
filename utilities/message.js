@@ -1,4 +1,4 @@
-// message formating 
+// message formatting 
 
 
 function messageFormat(message) {
@@ -9,7 +9,14 @@ function messageFormat(message) {
     };
 }
 
+function location_messageFormat(url) {
+
+    return {
+        url,
+        createdAt: new Date().getTime()
+    };
+}
 
 
 
-module.exports = { messageFormat };
+module.exports = { messageFormat, location_messageFormat };

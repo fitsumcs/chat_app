@@ -11,9 +11,9 @@ socket.on('message', (message) => {
     const html = Mustache.render(message_template, { message: message.text, createdAt: moment(message.createdAt).format('h:mm a') });
     messages.insertAdjacentHTML('beforeend', html);
 });
-socket.on('location_message', (ref) => {
+socket.on('location_message', (message) => {
 
-    const html = Mustache.render(location_template, { ref });
+    const html = Mustache.render(location_template, { ref: message.url, createdAt: moment(message.createdAt).format('h:mm a') });
     messages.insertAdjacentHTML('beforeend', html);
 
 });
@@ -40,9 +40,7 @@ shareLocation.addEventListener('click', () => {
             longitude: position.coords.longitude,
             latitude: position.coords.latitude
         }, () => {
-            //console.log('Location Shared!!');
-            const html = Mustache.render(message_template, { message: "Location Shared!!" });
-            messages.insertAdjacentHTML('beforeend', html);
+            console.log('Location Shared!!');
             shareLocation.removeAttribute('disabled');
         });
 
