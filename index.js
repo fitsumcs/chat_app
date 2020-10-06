@@ -41,13 +41,16 @@ io.on('connection', (socket) => {
 
 
     socket.on('send_message', (msg) => {
-        io.emit('message', messageFormat(msg));
+
+        const user = getUser(socket.id);
+        io.to(user.room_name).emit('message', messageFormat(msg));
 
     });
 
     // on share location 
     socket.on('shareLocation', (location, callback) => {
-        io.emit('location_message', location_messageFormat(` https://google.com/maps?q=${location.latitude},${location.longitude}`));
+        const user = getUser(socket.id);
+        io.to(user.room_name).emit('location_message', location_messageFormat(` https://google.com/maps?q=${location.latitude},${location.longitude}`));
         callback();
     });
 
