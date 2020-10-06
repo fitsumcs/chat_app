@@ -53,4 +53,9 @@ shareLocation.addEventListener('click', () => {
 });
 
 // add user info 
-socket.emit('join', { username, room_name });
+socket.emit('join', { username, room_name }, (err) => {
+    if (err) {
+        alert(err);
+        location.href = '/';
+    }
+});

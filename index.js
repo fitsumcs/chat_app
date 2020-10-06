@@ -7,7 +7,7 @@ const { messageFormat, location_messageFormat } = require('./utilities/message')
 //constants
 const port = process.env.PORT || 3000;
 const publicFolder = path.join(__dirname, './public');
-
+const { addUser, removeUser, getUser, getUsers } = require('./utilities/users');
 // initialize express
 const app = express();
 const server = http.createServer(app);
@@ -21,11 +21,22 @@ io.on('connection', (socket) => {
 
 
     //user info 
-    socket.on('join', ({ username, room_name }) => {
-        socket.join(room_name);
+    socket.on('join', (other, callback) => {
+
+        const { error, user } = addUser({ id: socket.id, ...other });
+
+        if (error) {
+            return callback(error);
+        }
+        socket.join(user.room_name);
         //on specific room
         socket.emit('message', messageFormat("Welcome to chat room!!"));
-        socket.broadcast.to(room_name).emit('message', messageFormat(`${username} has Joined!!`));
+        socket.broadcast.to(user.room_name).emit('message', messageFormat(`${user.username} has Joined!!`));
+
+        callback();
+
+
+
     });
 
 
@@ -41,7 +52,11 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        io.emit('message', messageFormat('A User has Left!!'));
+        const user = removeUser(socket.id);
+        if (user) {
+            io.to(user.room_name).emit('message', messageFormat(`${user.username} has Left!!`));
+        }
+
     });
 
 });

@@ -34,7 +34,7 @@ function addUser({ id, username, room_name }) {
     };
     users.push(user);
 
-    return user;
+    return { user };
 
 }
 
