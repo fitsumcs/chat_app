@@ -62,3 +62,5 @@ function getUsers(room_name) {
     room_name = room_name.trim().toLowerCase();
     return users.filter(user => user.room_name = room_name);
 }
+
+module.exports = { addUser, removeUser, getUser, getUsers };
