@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
         //render user list 
         io.to(user.room_name).emit('userList', {
             room: user.room_name,
+            username: user.username,
             users: getUsers(user.room_name)
         });
 

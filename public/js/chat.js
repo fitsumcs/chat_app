@@ -49,9 +49,9 @@ socket.on('location_message', (message) => {
 
 });
 
-socket.on('userList', ({ room, users }) => {
+socket.on('userList', ({ room, users, username }) => {
 
-    const html = Mustache.render(userList_template, { room, users });
+    const html = Mustache.render(userList_template, { room, users, username });
     document.querySelector('#sidebar').innerHTML = html;
 });
 
