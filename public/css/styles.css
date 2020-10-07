@@ -40,7 +40,7 @@ input {
 button {
     cursor: pointer;
     padding: 12px;
-    background: #7C5CBF;
+    background: skyblue;
     border: none;
     color: white;
     font-size: 16px;
@@ -48,7 +48,7 @@ button {
 }
 
 button:hover {
-    background: #6b47b8;
+    background: #111d2e;
 }
 
 button:disabled {
@@ -56,12 +56,13 @@ button:disabled {
     background: #7c5cbf94;
 }
 
+
 /* Join Page Styles */
 
 .centered-form {
     background: #333744;
     width: 100vw;
-    height: 100vh;   
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,8 +71,8 @@ button:disabled {
 .centered-form__box {
     box-shadow: 0px 0px 17px 1px #1D1F26;
     background: #F7F7FA;
-    padding: 24px;
-    width: 250px;
+    padding: 2rem;
+    width: 24rem;
 }
 
 .centered-form button {
@@ -83,6 +84,7 @@ button:disabled {
     width: 100%;
 }
 
+
 /* Chat Page Layout */
 
 .chat {
@@ -92,10 +94,11 @@ button:disabled {
 .chat__sidebar {
     height: 100vh;
     color: white;
-    background: #333744;
+    background: rgb(135, 148, 222);
     width: 225px;
     overflow-y: scroll
 }
+
 
 /* Chat styles */
 
@@ -112,10 +115,11 @@ button:disabled {
     overflow-y: scroll;
 }
 
+
 /* Message Styles */
 
 .message {
-    margin-bottom: 16px;   
+    margin-bottom: 16px;
 }
 
 .message__name {
@@ -132,6 +136,7 @@ button:disabled {
 .message a {
     color: #0070CC;
 }
+
 
 /* Message Composition Styles */
 
@@ -160,13 +165,14 @@ button:disabled {
     font-size: 14px;
 }
 
+
 /* Chat Sidebar Styles */
 
 .room-title {
     font-weight: 400;
     font-size: 22px;
-    background: #2c2f3a;
-    padding: 24px;   
+    background: rgb(30, 44, 49);
+    padding: 24px;
 }
 
 .list-title {
@@ -180,4 +186,30 @@ button:disabled {
     list-style-type: none;
     font-weight: 300;
     padding: 12px 24px 0 24px;
+}
+
+#mesg {
+    border-radius: 2rem;
+    border-color: gray;
+}
+
+
+/* icon  */
+
+.icon {
+    font-size: .7rem;
+    color: green;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+}
+
+
+/* share location button */
+
+#shareLocation {
+    width: 5rem;
+    border-radius: 4rem;
+    height: 3rem;
+    background-color: white;
+    color: #000;
 }

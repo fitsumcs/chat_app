@@ -8,7 +8,7 @@
     <!-- google tv favicon -->
     <link rel="icon" href="/img/icon.png" sizes="96x96" type="image/png">
     <!-- my style  -->
-    <link rel="stylesheet" href="/css/styles.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
@@ -26,9 +26,9 @@
             <div class="compose">
                 <form id="messageForm">
                     <input type="text" placeholder="Your Message " id="mesg" required autocomplete="off"><br><br>
-                    <button>Send</button>
+                    <!-- <button>Send</button> -->
                 </form>
-                <button id="shareLocation">Share Location</button>
+                <button id="shareLocation"><i class="fa fa-map-marker fa-2x"></i></button>
             </div>
 
         </div>
@@ -65,7 +65,7 @@
         <br>
         <ul class="users">
             {{#users}}
-            <li style="margin-bottom : .5rem"> <span style="font-size: .8em; color: Tomato; margin-right:1rem;margin-bottom : 2rem">
+            <li style="margin-bottom : .5rem"> <span class="icon">
                 <i class="fa fa-circle "></i>
               </span>{{username}}</li>
             {{/users}}
